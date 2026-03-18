@@ -26,8 +26,18 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
+The purpose is to guess a number between 1 and 100.
 - [ ] Detail which bugs you found.
+The first bug that I found is that when I submit my guest number, it does not actually tell me which number is the right one even though I go down. For example: I started putting 50, then 25, 12, 6, 3 and 1 and it continues telling me to go lower.
+
+The second bug that I found is that when I changed the mode from normal to hard and I tried to play, it does not do nothing. Also, it keeps the message from the previous game, "Game over. Start a new game to try again".
+
+The third bug that I found is the score number. I do not understand how it works. I think it's giving inconsistent values.
+
 - [ ] Explain what fixes you applied.
+One fix was in the function check_guess. The bug was that the status string and hint string contradicted each other. Claude Code assisted me in what to do to solve the issue. It stated that both "Too High" and "Too Low" should consistently deduct points (or apply the same penalty logic) since they're both wrong guesses.
+
+Another fix was in the function update_score. The bug was an asymmetry glitch in the wrong-guess scoring. Claude Code helped me solve the glitch. It stated that the attempt_number % 2 == 0 branch was causing "Too High" to grant +5 on even attempts instead of always penalizing -5 like "Too Low" does.
 
 ## 📸 Demo
 
