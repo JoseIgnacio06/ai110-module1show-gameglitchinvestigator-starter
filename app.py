@@ -1,6 +1,5 @@
 import random
 import streamlit as st
-
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
@@ -35,16 +34,23 @@ def check_guess(guess, secret):
 
     try:
         if guess > secret:
-            return "Too High", "📈 Go HIGHER!"
+            #FIX: Refactored logic into logic_utils.py using Claude Code
+            # FIXME: Logic breaks here
+            # return "Too High", "📈 Go HIGHER!"
+            return "Too High", "📉 Go LOWER!"
         else:
-            return "Too Low", "📉 Go LOWER!"
+            # return "Too Low", "📉 Go LOWER!"
+            return "Too Low", "📈 Go HIGHER!"
     except TypeError:
         g = str(guess)
         if g == secret:
             return "Win", "🎉 Correct!"
         if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
+            # FIXME: Logic breaks here
+            # return "Too High", "📈 Go HIGHER!"
+            return "Too High", "📉 Go LOWER!"
+        # return "Too Low", "📉 Go LOWER!"
+        return "Too Low", "📈 Go HIGHER!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
@@ -55,8 +61,10 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
         return current_score + points
 
     if outcome == "Too High":
-        if attempt_number % 2 == 0:
-            return current_score + 5
+        #FIX: Refactored logic into logic_utils.py using Claude Code
+        # FIXME: Logic breaks here
+        # if attempt_number % 2 == 0:
+        # return current_score - 5
         return current_score - 5
 
     if outcome == "Too Low":
